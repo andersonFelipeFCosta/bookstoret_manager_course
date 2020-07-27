@@ -17,7 +17,7 @@ public class Book {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false,unique = true)
-    private String nome;
+    private String name;
     @Column(nullable= false)
     private Integer pager;
     @Column(nullable= false)
@@ -29,8 +29,6 @@ public class Book {
     @ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST ,CascadeType.MERGE,CascadeType.REMOVE})
     @JoinColumn(name = "author_id")
     private Author author;
-    public void author (){
-        author.getNome();
-    }
+
 
 }
