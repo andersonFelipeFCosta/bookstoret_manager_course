@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
+
 @RestController
 @RequestMapping("/app/v1/books")
 public class BookController {
@@ -23,7 +24,6 @@ public class BookController {
 
     @PostMapping
     public MessageResponseDTO create( @RequestBody @Valid BookDTO bookDTO){
-
         return  bookService.create(bookDTO);
     }
 }
