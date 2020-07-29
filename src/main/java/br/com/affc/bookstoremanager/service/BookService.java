@@ -1,5 +1,6 @@
 package br.com.affc.bookstoremanager.service;
 
+import br.com.affc.bookstoremanager.dto.AuthorDTO;
 import br.com.affc.bookstoremanager.dto.BookDTO;
 import br.com.affc.bookstoremanager.dto.MessageResponseDTO;
 import br.com.affc.bookstoremanager.entity.Book;
@@ -7,6 +8,8 @@ import br.com.affc.bookstoremanager.mapper.BookMapper;
 import br.com.affc.bookstoremanager.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class BookService {
@@ -23,5 +26,10 @@ public class BookService {
            Book bookToSave = bookMapper.toModel(bookDTO);
            Book savedBook = bookRepository.save(bookToSave);
            return (MessageResponseDTO) MessageResponseDTO.builder().message("Book created with *ID "+ savedBook.getId() ).build();
+    }
+
+    public BookDTO findById(Long id) {
+        Optional<Book> optionalBook=bookRepository.findById(id);
+        return bookMapper.toDTO(optionalBook.get());
     }
 }
